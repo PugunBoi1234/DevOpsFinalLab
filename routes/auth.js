@@ -4,7 +4,7 @@ const db = require('../db'); // Import the database connection
 const bcrypt = require('bcrypt');
 
 router.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', {user: req.session.user });
 });
 
 router.get('/login', (req, res) => {
@@ -71,7 +71,7 @@ router.post('/login', (req, res) => {
                 console.log('Session user:', req.session.user);
 
                 
-                res.redirect('/post_blog'); // Redirect to post_blog page after successful login
+                res.redirect('/blogs'); // Redirect to blog page after successful login
             }
             else {
                 console.log('Invalid email or password for email:', email);

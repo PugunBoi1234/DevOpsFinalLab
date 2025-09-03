@@ -30,6 +30,7 @@ app.use(session({
 //});
 
 app.use('/', require('./routes/auth')); // Import the auth routes
+app.use('/', require('./routes/blogs')); // Import the blog routes
 
 // Start the server
 app.listen(PORT, () => {

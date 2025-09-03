@@ -34,12 +34,16 @@
                         <a href="#" class="text-gray-700 hover:text-sky-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
                     </div>
                 </div>
+
+                <% if (!user){ %>
                 <button class="bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors" onclick="location.href='/login'">
                     Sign In
                 </button>
+                <% } else { %>
                 <button class="bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors" onclick="location.href='/post_blog'">
                     Write Post
                 </button>
+                <% } %>
             </div>
         </div>
     </nav>
