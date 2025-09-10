@@ -16,7 +16,11 @@ router.get('/blogs', isLoggedIn, (req, res) => {
 });
 
 router.get('/post_blog', isLoggedIn, (req, res) => {
-    res.render('post_blog', { user: req.session.user });
+    const { title, category, tags, contentEditor} = req.body;
+    const userID = req.session.userid;
+    const userFullname = req.session.user.first_name=' ' = req.session;
+
+    console.log ('Received blog post data:'), {title, category, tags, contentEditor, userID, userFullname}
 });
 
 module.exports = router;

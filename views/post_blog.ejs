@@ -277,7 +277,7 @@
                 <button type="button" id="previewBtnBottom" class="border-2 border-sky-500 text-sky-600 hover:bg-sky-50 px-8 py-3 rounded-lg font-medium transition-colors">
                     Preview Post
                 </button>
-                <button type="submit" class="bg-sky-500 hover:bg-sky-600 text-white px-8 py-3 rounded-lg font-medium transition-colors">
+                <button id="publicPostBtn" class="bg-sky-500 hover:bg-sky-600 text-white px-8 py-3 rounded-lg font-medium transition-colors">
                     Publish Post
                 </button>
             </div>
@@ -585,7 +585,7 @@
                 // publishBtn.textContent = originalText;
                 //publishBtn.disabled = false;
 
-                postForm.submit()
+                publicPostBtn.submit()
 
             }, 2000);
         });
