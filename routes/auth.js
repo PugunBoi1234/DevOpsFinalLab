@@ -68,8 +68,10 @@ router.post('/login', (req, res) => {
                 req.session.user = results[0].email; // Store user email in session
 
                 console.log('User logged in successfully:', results[0]);
-                console.log('Session user:', req.session.user);
 
+                console.log('Session ID:', req.session.id);
+
+                console.log('Session user:', req.session.user);
                 
                 res.redirect('/blogs'); // Redirect to blog page after successful login
             }
@@ -79,5 +81,11 @@ router.post('/login', (req, res) => {
             }
         });
 });
+
+ router.get('/logout', (req, res) => {
+    req.session.destroy( () => {
+        res.redirect('/login');
+    });
+ });
 
 module.exports = router;

@@ -62,14 +62,14 @@
         </div>
 
         <!-- Writing Form -->
-        <form id="postForm" class="space-y-6">
+        <form id="postForm" class="space-y-6" method="post" action="/post_blog" enctype="multipart/form-data">
             <!-- Title Input -->
             <div class="bg-white/70 backdrop-blur-sm rounded-xl shadow-lg p-6">
                 <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Article Title</label>
                 <input 
                     type="text" 
-                    id="title" 
-                    name="title"
+                    id="subtitle" 
+                    name="subtitle"
                     placeholder="Enter your article title..."
                     class="w-full text-2xl font-bold border-none outline-none bg-transparent placeholder-gray-400 focus:ring-0"
                     maxlength="100"
