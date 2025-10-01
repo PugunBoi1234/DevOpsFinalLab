@@ -21,10 +21,10 @@ app.use(session({
 }));
 
 // Add Content Security Policy (CSP) header
-app.use((req, res, next) => {
-  res.setHeader('Content-Security-Policy', "default-src 'self'; connect-src 'self';");
-  next();
-});
+//app.use((req, res, next) => {
+//  res.setHeader('Content-Security-Policy', "default-src 'self'; script-src 'self' https://cdn.tailwindcss.com; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;");
+//  next();
+//});
 
 //  Routes:
 //app.get('/', (req, res) => {
