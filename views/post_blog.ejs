@@ -28,7 +28,7 @@
                         ← Back
                     </button>
                     <!-- <h1 class="text-2xl font-bold text-sky-600">SkyBlog</h1> -->
-                    <h1 class="text-2xl font-bold text-sky-600"><a href="index.ejs">SkyBlog</a></h1>
+                    <h1 class="text-2xl font-bold text-sky-600"><a href="/index">SkyBlog</a></h1>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
@@ -68,8 +68,8 @@
                 <label for="title" class="block text-sm font-medium text-gray-700 mb-2">Article Title</label>
                 <input 
                     type="text" 
-                    id="subtitle" 
-                    name="subtitle"
+                    id="title" 
+                    name="title"
                     placeholder="Enter your article title..."
                     class="w-full text-2xl font-bold border-none outline-none bg-transparent placeholder-gray-400 focus:ring-0"
                     maxlength="100"
@@ -188,7 +188,7 @@
                 <div class="p-6">
                     <label for="content" class="block text-sm font-medium text-gray-700 mb-2">Article Content</label>
                     <div 
-                        id="contentEditor"
+                        id="contentEditor" 
                         name="contentEditor"
                         contenteditable="true"
                         class="min-h-96 p-4 border border-gray-200 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent outline-none prose prose-lg max-w-none"
@@ -277,10 +277,12 @@
                 <button type="button" id="previewBtnBottom" class="border-2 border-sky-500 text-sky-600 hover:bg-sky-50 px-8 py-3 rounded-lg font-medium transition-colors">
                     Preview Post
                 </button>
-                <button id="publicPostBtn" class="bg-sky-500 hover:bg-sky-600 text-white px-8 py-3 rounded-lg font-medium transition-colors">
+                <button type="submit" id="publishPPostBtn" class="bg-sky-500 hover:bg-sky-600 text-white px-8 py-3 rounded-lg font-medium transition-colors">
                     Publish Post
                 </button>
             </div>
+
+            <input type="hidden" name="hiddenContent" id="hiddenContent">
         </form>
     </main>
 
@@ -574,18 +576,19 @@
             }
             
             // Simulate publishing
-            const publishBtn = document.querySelector('button[type="submit"]');
+            const publishBtn = document.getElementById('publishPPostBtn');
             const originalText = publishBtn.textContent;
             publishBtn.textContent = 'Publishing...';
             publishBtn.disabled = true;
             
             setTimeout(() => {
                 alert('🎉 Your post has been published successfully!');
-                // localStorage.removeItem('blogDraft');
-                // publishBtn.textContent = originalText;
+               // localStorage.removeItem('blogDraft');
+                //publishBtn.textContent = originalText;
                 //publishBtn.disabled = false;
+                document.getElementById('hiddenContent').value = contentEditor.innerHTML;
 
-                publicPostBtn.submit()
+                postForm.submit();
 
             }, 2000);
         });
@@ -593,6 +596,11 @@
         // Publish from preview
         document.getElementById('publishFromPreview').addEventListener('click', function() {
             document.getElementById('previewModal').classList.add('hidden');
+            document.getElementById('postForm').dispatchEvent(new Event('submit'));
+        });
+
+        // Nav publish button
+        document.getElementById('publishBtn').addEventListener('click', function() {
             document.getElementById('postForm').dispatchEvent(new Event('submit'));
         });
 
@@ -618,4 +626,4 @@
         document.getElementById('publishDate').value = new Date().toISOString().slice(0, 16);
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96a55ff4732b799a',t:'MTc1NDM4NzI2NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
-</html>
+</html> 

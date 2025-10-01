@@ -20,6 +20,12 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+// Add Content Security Policy (CSP) header
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', "default-src 'self'; connect-src 'self';");
+  next();
+});
+
 //  Routes:
 //app.get('/', (req, res) => {
 //    res.render('index');
