@@ -39,8 +39,8 @@ router.get('/read_blog', (req, res) => {
 
 // Handle user registration
 router.post('/register', async (req, res) => {
-  const { fullName, email, password, confirmPassword } = req.body;
-  const [first_name, last_name] = fullName.split(' ');
+  const { fullname, email, password, confirmPassword } = req.body;
+  const [first_name, last_name] = fullname.split(' ');
 
     if (!first_name || !last_name || !email || !password || !confirmPassword) {
       return res.status(400).send('All fields are required.');

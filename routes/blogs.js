@@ -96,18 +96,14 @@ router.post('/post_blog', isLogged, upload.single('imageInput'), (req, res) => {
     function saveBlog() {
       const imageFilename = req.file ? req.file.filename : null;
       db.query(
-        'INSERT INTO blogs (blog_title, idcategory, blog_tag, blog_detail, blog_image, iduser, blog_author) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        'INSERT INTO blog (blog_title, idcategory, blog_tag, blog_detail, blog_image, iduser, blog_author) VALUES (?, ?, ?, ?, ?, ?, ?)',
         [title, category, tags, hiddenContent, imageFilename, userid, userFullName],
         (err, result) => {
           if (err) {
             console.error('❌ Error saving blog:', err);
             return res.status(500).send('Error saving blog post.');
           }
-          res.status(200).json({
-            success: true,
-            message: 'Blog post saved successfully!',
-            blogId: result.insertId
-          });
+          res.redirect('/');
         }
       );
     }
